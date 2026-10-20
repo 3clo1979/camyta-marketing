@@ -2,6 +2,6 @@
 
 Website for CAMYTA Marketing Group.
 
-Static website assets are in dist/. Cloudflare Workers deployment configuration is in wrangler.jsonc.
+Static assets are in dist/. Cloudflare configuration is in wrangler.jsonc.
 
-Rivet currently provides a browser-local service guide. Live AI chat needs a server-side integration.
+Migration in progress: contact interaction script pending before Cloudflare deployment.

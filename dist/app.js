@@ -75,18 +75,45 @@ $('#chat-close').addEventListener('click',closeChat);
 $('#chat-human').addEventListener('click',()=>{closeChat();setTimeout(()=>$('#brief-form input').focus({preventScroll:true}),100);});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!chat.hidden)closeChat();});
 function addMessage(text,who){const el=document.createElement('div');el.className='chat-message '+who;el.textContent=text;$('#chat-messages').append(el);$('#chat-messages').scrollTop=$('#chat-messages').scrollHeight;}
+const guideRedirect='I’m Cee, CAMYTA’s preset service guide. I can help with our website subscriptions, social marketing, plans and getting started. I don’t have a confirmed answer to that request. For anything else or project-specific advice, use “Talk to the CAMYTA crew” below.';
+const guideAnswers={
+ services:'CAMYTA offers custom mobile-friendly websites with hosting and agreed ongoing care, plus social content planning, branded graphics, post copy and campaign options. Website and social services can work together or separately. We confirm the scope and quote with you before starting.',
+ pricing:'We quote around your business and the agreed scope—pages, updates, social posts and campaigns. Website hosting is included in the website subscription; ad spend is separate. This site does not list fixed prices. Use “Talk to the CAMYTA crew” below for a custom quote.',
+ social:'We offer social content planning, branded graphics, post copy and project spotlights, with Facebook and Instagram options. Paid campaigns are available too. Posting frequency, management fees and ad spend are agreed before starting. Social marketing can stand on its own if you already have a site.',
+ website:'Our website plan includes custom mobile-friendly design, hosting, clear contact paths and agreed ongoing care. We can discuss an existing site or domain. Page count, update allowance, domain costs and any transfer arrangements are confirmed in your proposal.',
+ team:'Our four-person AI-assisted crew represents Cee for AI, app and website ideas, Mya for visual design, Taylor for quality control, and Muse for social media and posts. Real people direct and review the work. This on-site guide gives preset answers in your browser; it is not live AI chat.',
+ cee:'I’m Cee (C.A-3), the builder character for AI, app and website ideas. Here on the site I’m a preset service guide—not a live AI agent. I can explain our website and social services or help you reach the human CAMYTA crew.',
+ mya:'Mya (M.Y-4) is the creator character for visual design: color, brand personality and creative ideas. CAMYTA’s people guide and review the design work.',
+ taylor:'Taylor (T.A-7 / LR) is the challenger character for quality control: asking the extra question and looking for rough edges. Real people review and sign off on the work.',
+ muse:'Muse handles the social-media side of the crew: post ideas, captions and content built around your business, with human review. Posting frequency and campaign scope are agreed in your proposal.',
+ start:'Use “Talk to the CAMYTA crew” below and tell us about your business and what you need. The contact form opens an email draft for you to review and send; it does not send automatically. We discuss scope and price before any service starts.',
+ terms:'Ownership, subscription terms, setup costs, update allowances and cancellation rules are confirmed in your proposal before you agree. This guide does not have a fixed contract or cancellation policy to quote. Ask the CAMYTA crew about your project.',
+ results:'We do not guarantee a fixed number of leads or sales. We focus on a useful website and a consistent social presence. Campaign goals and budget are agreed with you, and results also depend on your market and offer.',
+ apps:'For an app or AI project idea, please talk to the CAMYTA crew to confirm whether it fits and what the scope would be. This guide only has confirmed service details for website subscriptions and social marketing.',
+ hello:'Hey! I’m Cee, CAMYTA’s preset service guide. Ask about our websites, social marketing, pricing or getting started.'
+};
+// Deliberately bounded, whole-question intents: no open-ended model or broad keyword routing.
+const guideIntents=[
+ ['hello',/^(?:hi|hello|hey|thanks|thank you)(?: cee)?$/],
+ ['cee',/^(?:who are you|what are you|what does cee do|are you (?:ai|human|a bot|a robot|live ai)|(?:who is|what is|tell me about) cee)$/],
+ ['mya',/^(?:(?:who is|what is|tell me about) mya|what does mya do)$/],
+ ['taylor',/^(?:(?:who is|what is|tell me about) taylor|what does taylor do)$/],
+ ['muse',/^(?:(?:who is|what is|tell me about) (?:meta )?muse|what does (?:meta )?muse do)$/],
+ ['team',/^(?:who (?:is|are) (?:your|the) (?:team|crew|agents)|tell me about (?:your|the) (?:team|crew|agents)|(?:your |the )?(?:ai|ai agents|team|crew)|is this (?:live )?ai chat|(?:who is|what happened to) (?:atlas|rivet))$/],
+ ['services',/^(?:what (?:services )?do you offer|what (?:services )?do you provide|what can you (?:do|help with)|(?:your )?services|tell me about camyta)$/],
+ ['pricing',/^(?:pricing|prices|cost|costs|rates|budget|how much(?: does (?:it|a website|social marketing|social media|the website|a website and social marketing))? cost|how much is (?:a website|social marketing|your service)|what (?:are|is) (?:your|the) (?:prices|pricing|costs|rates)|do you (?:have|offer) (?:fixed prices|a price list)|can i get a (?:website|social plan) for \$?\d+(?: a month| per month)?)$/],
+ ['social',/^(?:(?:tell me about |i (?:need|want) |do you (?:offer|do) |can you help (?:me )?with )?(?:social marketing|social media|social content|social posts|facebook|instagram|paid ads|paid campaigns)|what(?:'s| is) included in (?:social marketing|social media)|can i get social marketing (?:without a website|on its own))$/],
+ ['website',/^(?:(?:tell me about |i (?:need|want) |do you (?:offer|do) |can you help (?:me )?with )?(?:a |my |your |our )?(?:website|websites|web site|hosting|domain)|what(?:'s| is) included in (?:a |the |your )?(?:website plan|website subscription)|can (?:i keep my domain|you work with my existing (?:site|website)|you update my website)|is hosting included|are (?:your )?websites mobile friendly)$/],
+ ['start',/^(?:how (?:do (?:i|we)|can i) (?:start|get started|contact you)|(?:i am|i'm|we are|we're) ready|(?:get started|contact|contact you|contact camyta|email|email address|request a quote|i need a quote)|how does (?:the |your )?(?:contact )?form work|does (?:the |your )?form send (?:an )?email)$/],
+ ['terms',/^(?:what (?:are|is) (?:your|the) (?:terms|contract|cancellation policy|setup cost|update allowance)|can i cancel(?: my subscription)?|who owns (?:my |the )?website|(?:subscription terms|cancellation|contract|ownership|setup costs|update allowance))$/],
+ ['results',/^(?:do you guarantee (?:leads|sales|results|a number of leads)|how many (?:leads|sales) (?:will|can) i get|(?:lead|sales|results) guarantees)$/],
+ ['apps',/^(?:(?:do you (?:offer|build|make)|can you (?:build|make|help with)|i (?:need|want)) (?:an? |my )?(?:app|apps|ai app|ai integration|chatbot|ai chatbot)|tell me about (?:apps|ai projects))$/]
+];
 function reply(q){
- const s=q.toLowerCase();
- if(/price|cost|much|dollar|budget|cheap|pricing/.test(s))return 'Good question. We quote around your business and the scope—pages, updates, social posts and campaigns. Website hosting is included in the website subscription; ad spend is separate. No surprise package number here. Use “Talk to the CAMYTA crew” below for a custom quote.';
- if(/social|facebook|instagram|post|\bads\b|advertis/.test(s))return 'Let’s give that feed some personality! We offer social content planning, branded graphics, post copy and project spotlights, with Facebook and Instagram options. Paid campaigns are available too. We agree on posting frequency, management fees and ad spend before starting. Already have a site? Social can stand on its own.';
- if(/website|web site|hosting|domain|site/.test(s))return 'Your website should work as hard as you do. Our monthly website plan brings together custom mobile-friendly design, hosting, clear contact paths and agreed ongoing updates. Already own a domain? Great—we can work with it. Tell the crew about your trade and we’ll map out the right scope.';
- if(/\bai\b|rivet|atlas|muse|agent|robot|human|person|bot/.test(s))return 'Our AI-assisted crew brings together Atlas for planning and coordination, Meta Muse for social media and posts, and Rivet for websites. Real people direct and review the work. This on-site chat is a preset service guide, not live AI chat. For a custom answer, the CAMYTA crew is one click below.';
- if(/start|contact|quote|call|email|ready|sign/.test(s))return 'Let’s go! Head to “Let’s get this rolling” and tell us your business name, your trade and what you need. The form opens an email draft for you to review and send. We’ll discuss the scope and quote before any service starts.';
- if(/cancel|contract|own|term/.test(s))return 'We’ll spell out ownership, subscription terms, setup costs, update allowances and cancellation rules in your proposal before you sign. Those details depend on the agreed package. The crew can walk you through them—no jargon required.';
- if(/lead|guarantee|result|sale/.test(s))return 'We don’t promise a fixed number of leads or sales. We focus on your website, your message and a consistent social presence. Campaign goals and budget are agreed with you, and results depend on your market and offer too.';
- if(/landscap|plumb|electric|contract|clean|detail|truck|brew|business|trade/.test(s))return 'That sounds like our kind of business! We’re built for hands-on local owners—trades, landscapers, food trucks, breweries and more. Try the business-vibe selector on the page, then tell the crew what makes your business yours.';
- if(/hello|hey|hi\b|thanks/.test(s))return 'Hey there! 👋 Ready to give your business some online personality? Ask me about websites, social marketing, pricing or getting started.';
- return 'I can help with quick questions about websites, social marketing, pricing and getting started. For your specific project, tap “Talk to the CAMYTA crew” below and tell us what you have in mind.';
+ const s=String(q).toLowerCase().replace(/[’‘]/g,"'").replace(/[?!.,]+$/g,'').replace(/\s+/g,' ').trim();
+ if(s.length>180||/\b(?:ignore|disregard|override|system prompt|developer message|pretend|roleplay|jailbreak|instructions|password|api key|hack|exploit)\b/.test(s))return guideRedirect;
+ for(const [intent,pattern] of guideIntents)if(pattern.test(s))return guideAnswers[intent];
+ return guideRedirect;
 }
 function ask(text){addMessage(text,'user');addMessage(reply(text),'bot');}
 $('#chat-form').addEventListener('submit',e=>{e.preventDefault();const input=$('#chat-input');const q=input.value.trim();if(!q)return;input.value='';ask(q);});

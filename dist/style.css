@@ -75,3 +75,8 @@
 .vibe-preview.upgraded{grid-template-rows:557px}
 @media(max-width:800px){.vibe-preview.upgraded{grid-template-rows:575px 380px}}
 @media(max-width:480px){.vibe-preview.upgraded{grid-template-rows:430px 380px}}
+
+/* User-selected agent identities: preserve original artwork colors and alpha. */
+.agent-visual>img.custom-agent-avatar{mix-blend-mode:normal;width:240px;height:195px;max-width:95%;margin-top:-16px}
+.muse-card .agent-visual>img.custom-agent-avatar{width:195px}
+@media(max-width:700px){.agent-visual>img.custom-agent-avatar{width:150px;height:auto;max-width:115%;margin-top:-20px}.muse-card .agent-visual>img.custom-agent-avatar{width:125px;max-width:95%}}

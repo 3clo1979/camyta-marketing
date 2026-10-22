@@ -28,3 +28,50 @@
 
 .showcase-window{display:flex;flex-direction:column}.compact-demo{flex:1;min-height:0}.cd-landscape,.cd-trade,.cd-food,.cd-auto{flex:1;min-height:0}
 @media(min-width:801px){.upgraded .vibe-notes{display:grid;padding:0;grid-template-columns:minmax(0,1fr);grid-template-rows:25px 37px 68px 105px 42px 105px 45px 30px;gap:0;height:557px}.upgraded .vibe-notes>.pill{grid-row:1;align-self:start;font-size:6px}.upgraded .vibe-notes>.sample-index{grid-row:2;margin:14px 0 0;height:auto;min-height:0;font-size:7px}.upgraded .vibe-notes>h3{grid-row:3;height:auto;min-height:0;margin:0;font-size:27px;line-height:1.15}.upgraded .vibe-notes>p{grid-row:4;height:auto;min-height:0;margin:0;font-size:11px;line-height:1.8}.upgraded .vibe-notes>.palette{grid-row:5;margin:8px 0 0;height:26px;min-height:26px}.upgraded .vibe-notes>.sample-features{grid-row:6;height:auto;min-height:0;margin:0}.upgraded .sample-features li{font-size:8px;min-height:31px;padding-block:7px}.upgraded .vibe-notes>.button{grid-row:7;margin:0;align-self:start;font-size:8px;padding:11px;min-height:0}.upgraded .vibe-notes>small{grid-row:8;margin:6px 0 0;height:auto;min-height:0;font-size:7px;line-height:1.6}}
+
+
+/* CAMYTA native icon system: one line weight, rounded ends, inherited brand color. */
+.icon-library{position:absolute;width:0;height:0;overflow:hidden;pointer-events:none}
+.camyta-icon{width:24px;height:24px;display:inline-block;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle}
+.service-icon .camyta-icon{width:32px;height:32px}
+.button>.camyta-icon,.text-link>.camyta-icon,.service a>.camyta-icon{width:18px;height:18px}
+.announcement>.camyta-icon{width:12px;height:12px;margin-left:10px}
+.browser-top>.camyta-icon{width:12px;height:12px}
+.hero-copy>p{max-width:440px}
+
+/* Every portfolio tab occupies the same footprint; real projects use captured site imagery. */
+.upgraded .showcase-window{height:557px;min-width:0}
+.portfolio-preview{display:block;position:relative;height:100%;width:100%;overflow:hidden;background:var(--sample-bg,#edf0e8)}
+.portfolio-preview>img{width:100%;height:100%;object-fit:contain;object-position:top center}
+.portfolio-preview-label{position:absolute;left:18px;bottom:18px;background:var(--ink);color:white;border:1px solid #ffffff60;border-radius:100px;padding:10px 15px;font-size:9px;font-weight:800;letter-spacing:1.1px;box-shadow:0 3px 15px #0002}
+.portfolio-preview-label>span{padding-left:20px}
+.portfolio-preview:hover .portfolio-preview-label{background:#286249}
+@media(max-width:800px){.upgraded .showcase-window{height:575px}.upgraded .vibe-notes{height:380px}}
+@media(max-width:480px){.upgraded .showcase-window{height:430px}.vibe-tabs button{font-size:10px;padding:12px 10px}.portfolio-preview-label{left:12px;bottom:12px;font-size:8px}}
+
+/* Human-led AI crew, in CAMYTA's original workshop-friendly palette. */
+.service-crew{display:flex;flex-wrap:wrap;gap:8px;margin-top:25px;padding-bottom:5px}
+.service-crew>span{display:inline-flex;align-items:center;gap:5px;border:1px solid #172b2540;border-radius:30px;padding:7px 9px;font-size:10px;font-weight:700}
+.service-crew .camyta-icon{width:18px;height:18px}
+.agent-section{padding-block:90px}
+.agent-heading{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-bottom:44px}
+.agent-heading h2{margin-bottom:0}.agent-heading p{max-width:490px;font-size:16px;line-height:1.8}.agent-heading .agent-human-note{font-size:12px;color:#cee0d2;margin-bottom:0}
+.agent-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.agent-card{border:1px solid #ffffff40;border-radius:18px;overflow:hidden;background:var(--paper);color:var(--ink);display:flex;flex-direction:column}
+.agent-visual{height:240px;position:relative;display:flex;align-items:center;justify-content:center;isolation:isolate;overflow:hidden;background:#d9f3d8}
+.muse-card .agent-visual{background:#e9e0fa}.rivet-card .agent-visual{background:#f2ecd8}
+.agent-orbit{position:absolute;width:190px;height:190px;border:1px dashed #123e3255;border-radius:50%;z-index:-1;transform:rotate(-20deg)}
+.agent-emblem{width:155px;height:155px;fill:none;stroke:#123e32;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.agent-emblem .emblem-accent{fill:#d4f56b;stroke-width:3}.muse-emblem{stroke-width:6}.muse-emblem .emblem-accent{fill:#ff805f;stroke-width:2}
+.agent-visual>img{width:205px;height:205px;object-fit:contain;mix-blend-mode:multiply}
+.agent-chip{position:absolute;bottom:15px;font-size:8px;letter-spacing:1.2px;font-weight:800;background:#faf9f5e6;padding:6px 12px;border-radius:20px}
+.agent-body{padding:27px;display:flex;flex-direction:column;flex:1}.agent-role{font-size:8px;font-weight:800;letter-spacing:1.3px;color:#4b6757;margin-bottom:13px}
+.agent-body h3{font-size:36px;margin:0 0 18px}.agent-body h3>span{color:#659259}.agent-body p{font-size:13px;line-height:1.8;color:#52645a;margin-bottom:23px}
+.agent-strength{display:flex;align-items:center;gap:10px;font-size:11px;font-weight:700;margin-top:auto;border-top:1px solid var(--line);padding-top:16px}
+.agent-body .button{margin-top:auto;font-size:11px}.agent-disclosure{font-size:11px;line-height:1.8;color:#cee0d2;text-align:center;margin:26px auto 0;max-width:760px}
+@media(max-width:900px){.agent-heading{gap:30px}.agent-grid{gap:14px}.agent-body{padding:20px}.agent-body h3{font-size:30px}.agent-visual{height:210px}}
+@media(max-width:700px){.agent-section{padding-block:65px}.agent-heading{grid-template-columns:1fr;gap:22px;margin-bottom:30px}.agent-heading p{font-size:14px}.agent-grid{grid-template-columns:1fr;gap:22px}.agent-card{display:grid;grid-template-columns:34% 1fr}.agent-visual{height:100%;min-height:260px}.agent-visual>img{width:180px;max-width:130%;height:auto}.agent-emblem{width:90px;height:110px}.agent-orbit{width:130px;height:130px}.agent-chip{left:8px;right:8px;text-align:center;font-size:6px;letter-spacing:.5px;padding:5px}.agent-body p{font-size:12px}.agent-body h3{font-size:30px}.agent-role{font-size:7px}.agent-body .button{padding:12px;gap:8px;font-size:10px}.service-crew{max-width:100%}}
+@media(prefers-reduced-motion:reduce){.portfolio-preview,.agent-card{scroll-behavior:auto}}
+.vibe-preview.upgraded{grid-template-rows:557px}
+@media(max-width:800px){.vibe-preview.upgraded{grid-template-rows:575px 380px}}
+@media(max-width:480px){.vibe-preview.upgraded{grid-template-rows:430px 380px}}

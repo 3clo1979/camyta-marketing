@@ -77,11 +77,12 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!chat.hidden)closeC
 function addMessage(text,who){const el=document.createElement('div');el.className='chat-message '+who;el.textContent=text;$('#chat-messages').append(el);$('#chat-messages').scrollTop=$('#chat-messages').scrollHeight;}
 const guideRedirect='I’m Cee, CAMYTA’s preset service guide. I can help with our website subscriptions, social marketing, plans and getting started. I don’t have a confirmed answer to that request. For anything else or project-specific advice, use “Talk to the CAMYTA crew” below.';
 const guideAnswers={
+ zoey:'Zoey (Z.0-3) is our planned phone-concierge character, coming soon. The planned role is greeting callers, answering basic CAMYTA service questions and routing inquiries. Phone service is not live yet, and this site does not list a concierge phone number. Please use “Talk to the CAMYTA crew” for now.',
  services:'CAMYTA offers custom mobile-friendly websites with hosting and agreed ongoing care, plus social content planning, branded graphics, post copy and campaign options. Website and social services can work together or separately. We confirm the scope and quote with you before starting.',
  pricing:'We quote around your business and the agreed scope—pages, updates, social posts and campaigns. Website hosting is included in the website subscription; ad spend is separate. This site does not list fixed prices. Use “Talk to the CAMYTA crew” below for a custom quote.',
  social:'We offer social content planning, branded graphics, post copy and project spotlights, with Facebook and Instagram options. Paid campaigns are available too. Posting frequency, management fees and ad spend are agreed before starting. Social marketing can stand on its own if you already have a site.',
  website:'Our website plan includes custom mobile-friendly design, hosting, clear contact paths and agreed ongoing care. We can discuss an existing site or domain. Page count, update allowance, domain costs and any transfer arrangements are confirmed in your proposal.',
- team:'Our four-person AI-assisted crew represents Cee for AI, app and website ideas, Mya for visual design, Taylor for quality control, and Muse for social media and posts. Real people direct and review the work. This on-site guide gives preset answers in your browser; it is not live AI chat.',
+ team:'Our crew represents Cee for AI, app and website ideas, Mya for visual design, Taylor for quality control, and Muse for social media and posts. Zoey (Z.0-3) is the planned phone concierge, coming soon—not a live phone service. Real people direct and review the work. This on-site guide gives preset answers in your browser; it is not live AI chat.',
  cee:'I’m Cee (C.A-3), the builder character for AI, app and website ideas. Here on the site I’m a preset service guide—not a live AI agent. I can explain our website and social services or help you reach the human CAMYTA crew.',
  mya:'Mya (M.Y-4) is the creator character for visual design: color, brand personality and creative ideas. CAMYTA’s people guide and review the design work.',
  taylor:'Taylor (T.AY-7R) is the challenger character for quality control: asking the extra question and looking for rough edges. Real people review and sign off on the work.',
@@ -94,6 +95,7 @@ const guideAnswers={
 };
 // Deliberately bounded, whole-question intents: no open-ended model or broad keyword routing.
 const guideIntents=[
+ ['zoey',/^(?:(?:who is|what is|tell me about) zoey|what does zoey do|is zoey (?:live|available)|(?:your |the )?phone concierge|can i (?:call|phone)(?: you| zoey)?|what(?:'s| is) (?:your|the) (?:phone number|telephone number)|do you (?:have|offer) (?:a )?(?:phone service|phone concierge))$/],
  ['hello',/^(?:hi|hello|hey|thanks|thank you)(?: cee)?$/],
  ['cee',/^(?:who are you|what are you|what does cee do|are you (?:ai|human|a bot|a robot|live ai)|(?:who is|what is|tell me about) cee)$/],
  ['mya',/^(?:(?:who is|what is|tell me about) mya|what does mya do)$/],

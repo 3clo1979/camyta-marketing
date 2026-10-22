@@ -110,3 +110,13 @@
 /* Model identity first, with a friendly introduction just beneath. */
 .agent-grid-four .agent-body h3.agent-code{font-size:30px;letter-spacing:-1px;margin-bottom:7px}
 .agent-model.agent-human-name{border:0;border-radius:0;padding:0;font-size:13px;font-weight:600;letter-spacing:0;margin-bottom:17px;color:#52645a}
+
+/* Five teammates: a spacious centered 3+2 composition. */
+.agent-grid-five{grid-template-columns:repeat(6,minmax(0,1fr));gap:22px}
+.agent-grid-five>.agent-card{grid-column:span 2}
+.agent-grid-five>.agent-card:nth-child(4){grid-column:2 / span 2}
+.agent-grid-five>.agent-card:nth-child(5){grid-column:4 / span 2}
+.zoey-card .agent-visual{background:#e0f0e8}
+.agent-coming-soon{align-self:flex-start;background:#e6eddb;color:#345447;border:1px solid #9eaf93;border-radius:20px;font-size:9px;font-weight:800;letter-spacing:1px;padding:5px 9px;margin:0 0 16px}
+@media(max-width:1050px){.agent-grid-five{grid-template-columns:repeat(4,minmax(0,1fr))}.agent-grid-five>.agent-card:nth-child(4){grid-column:auto / span 2}.agent-grid-five>.agent-card:nth-child(5){grid-column:2 / span 2}}
+@media(max-width:700px){.agent-grid-five{grid-template-columns:1fr}.agent-grid-five>.agent-card,.agent-grid-five>.agent-card:nth-child(4),.agent-grid-five>.agent-card:nth-child(5){grid-column:auto}}

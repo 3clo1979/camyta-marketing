@@ -80,3 +80,9 @@
 .agent-visual>img.custom-agent-avatar{mix-blend-mode:normal;width:240px;height:195px;max-width:95%;margin-top:-16px}
 .muse-card .agent-visual>img.custom-agent-avatar{width:195px}
 @media(max-width:700px){.agent-visual>img.custom-agent-avatar{width:150px;height:auto;max-width:115%;margin-top:-20px}.muse-card .agent-visual>img.custom-agent-avatar{width:125px;max-width:95%}}
+
+/* A playful team portrait, separate from the practical role cards. */
+.crew-scene{margin:0 0 30px;border:1px solid #ffffff40;border-radius:22px;background:radial-gradient(ellipse at 50% 55%,#f9f5e8 20%,#e9efdc 100%);overflow:hidden;text-align:center}
+.crew-scene img{display:block;width:100%;height:390px;object-fit:contain;padding:12px 20px 0;box-sizing:border-box}
+.crew-scene figcaption{color:#345447;font-size:9px;font-weight:800;letter-spacing:2px;padding:0 20px 22px}
+@media(max-width:700px){.crew-scene{margin-bottom:22px;border-radius:18px}.crew-scene img{height:auto;padding:8px 0 0}.crew-scene figcaption{font-size:7px;letter-spacing:1.5px;padding:0 10px 16px}}

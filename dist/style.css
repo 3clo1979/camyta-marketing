@@ -86,3 +86,9 @@
 .crew-scene img{display:block;width:100%;height:390px;object-fit:contain;padding:12px 20px 0;box-sizing:border-box}
 .crew-scene figcaption{color:#345447;font-size:9px;font-weight:800;letter-spacing:2px;padding:0 20px 22px}
 @media(max-width:700px){.crew-scene{margin-bottom:22px;border-radius:18px}.crew-scene img{height:auto;padding:8px 0 0}.crew-scene figcaption{font-size:7px;letter-spacing:1.5px;padding:0 10px 16px}}
+
+/* The upper AI service box introduces the same complete creative crew. */
+.service.team-service{padding-bottom:22px}
+.service-team-image{display:block;width:100%;height:180px;object-fit:contain;margin:14px auto 0}
+@media(max-width:800px){.service.team-service{padding:28px}.service-team-image{height:210px;max-width:360px}}
+@media(max-width:480px){.service.team-service{padding:28px 26px 18px}.service-team-image{height:180px}}
